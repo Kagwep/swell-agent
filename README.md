@@ -1,303 +1,279 @@
-# Eliza 🤖
+# SwellChain Agent with Eliza
 
-<div align="center">
-  <img src="./docs/static/img/eliza_banner.jpg" alt="Eliza Banner" width="100%" />
-</div>
+This guide explains how to build and customize SwellChain agents using the Eliza framework, enabling seamless interaction with the SwellChain ecosystem through various communication channels.
 
-<div align="center">
+## Overview
 
-📑 [Technical Report](https://arxiv.org/pdf/2501.06781) |  📖 [Documentation](https://elizaos.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
+SwellChain Agent leverages Eliza's extensible agent architecture to provide a user-friendly interface for SwellChain operations. The implementation consists of:
 
-</div>
+1. A custom SwellChain plugin (`@elizaos/plugin-swell`) in the `packages/plugin-swell` directory
+2. A SwellChain character configuration in the `agents` directory
 
-## 🌍 README Translations
+## Features
 
-[中文说明](i18n/readme/README_CN.md) | [日本語の説明](i18n/readme/README_JA.md) | [한국어 설명](i18n/readme/README_KOR.md) | [Persian](i18n/readme/README_FA.md) | [Français](i18n/readme/README_FR.md) | [Português](i18n/readme/README_PTBR.md) | [Türkçe](i18n/readme/README_TR.md) | [Русский](i18n/readme/README_RU.md) | [Español](i18n/readme/README_ES.md) | [Italiano](i18n/readme/README_IT.md) | [ไทย](i18n/readme/README_TH.md) | [Deutsch](i18n/readme/README_DE.md) | [Tiếng Việt](i18n/readme/README_VI.md) | [עִברִית](i18n/readme/README_HE.md) | [Tagalog](i18n/readme/README_TG.md) | [Polski](i18n/readme/README_PL.md) | [Arabic](i18n/readme/README_AR.md) | [Hungarian](i18n/readme/README_HU.md) | [Srpski](i18n/readme/README_RS.md) | [Română](i18n/readme/README_RO.md) | [Nederlands](i18n/readme/README_NL.md) | [Ελληνικά](i18n/readme/README_GR.md)
+- 🔄 **Token Transfers**: Send tokens between addresses on SwellChain
+- 🌉 **Cross-Chain Bridge**: Bridge assets between Ethereum and SwellChain
+- 💱 **Token Swaps**: Exchange tokens using SwellChain's liquidity pools
+- 📊 **Price Oracle**: Query current and historical token prices
+- 💰 **Earning Opportunities**: Discover staking, lending, and liquidity provision options
 
-## 🚩 Overview
-
-<div align="center">
-  <img src="./docs/static/img/eliza_diagram.png" alt="Eliza Diagram" width="100%" />
-</div>
-
-## ✨ Features
-
-- 🛠️ Full-featured Discord, X (Twitter) and Telegram connectors
-- 🔗 Support for every model (Llama, Grok, OpenAI, Anthropic, Gemini, etc.)
-- 👥 Multi-agent and room support
-- 📚 Easily ingest and interact with your documents
-- 💾 Retrievable memory and document store
-- 🚀 Highly extensible - create your own actions and clients
-- 📦 Just works!
-
-## Video Tutorials
-
-[AI Agent Dev School](https://www.youtube.com/watch?v=ArptLpQiKfI&list=PLx5pnFXdPTRzWla0RaOxALTSTnVq53fKL)
-
-## 🎯 Use Cases
-
-- 🤖 Chatbots
-- 🕵️ Autonomous Agents
-- 📈 Business Process Handling
-- 🎮 Video Game NPCs
-- 🧠 Trading
-
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
 
-- [Python 2.7+](https://www.python.org/downloads/)
-- [Node.js 23+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Node.js 23+](https://nodejs.org/)
 - [pnpm](https://pnpm.io/installation)
-
-> **Note for Windows Users:** [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install-manual) is required.
-
-### Use the Starter (Recommended for Agent Creation)
-
-Full steps and documentation can be found in the [Eliza Starter Repository](https://github.com/elizaOS/eliza-starter).
-```bash
-git clone https://github.com/elizaos/eliza-starter.git
-cd eliza-starter
-cp .env.example .env
-pnpm i && pnpm build && pnpm start
-```
-
-### Manually Start Eliza (Only recommended for plugin or platform development)
-
-#### Checkout the latest release
-
-```bash
-# Clone the repository
-git clone https://github.com/elizaos/eliza.git
-
-# This project iterates fast, so we recommend checking out the latest release
-git checkout $(git describe --tags --abbrev=0)
-# If the above doesn't checkout the latest release, this should work:
-# git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-```
-
-If you would like the sample character files too, then run this:
-```bash
-# Download characters submodule from the character repos
-git submodule update --init
-```
-
-#### Edit the .env file
-
-Copy .env.example to .env and fill in the appropriate values.
-
-```
-cp .env.example .env
-```
-
-Note: .env is optional. If you're planning to run multiple distinct agents, you can pass secrets through the character JSON
-
-#### Start Eliza
-
-```bash
-pnpm i
-pnpm build
-pnpm start
-
-# The project iterates fast, sometimes you need to clean the project if you are coming back to the project
-pnpm clean
-```
-
-### Interact via Browser
-
-Once the agent is running, you should see the message to run "pnpm start:client" at the end.
-
-Open another terminal, move to the same directory, run the command below, then follow the URL to chat with your agent.
-
-```bash
-pnpm start:client
-```
-
-Then read the [Documentation](https://elizaos.github.io/eliza/) to learn how to customize your Eliza.
-
----
-
-### Automatically Start Eliza
-
-The start script provides an automated way to set up and run Eliza:
-
-```bash
-sh scripts/start.sh
-```
-
-For detailed instructions on using the start script, including character management and troubleshooting, see our [Start Script Guide](./docs/docs/guides/start-script.md).
-
-> **Note**: The start script handles all dependencies, environment setup, and character management automatically.
-
----
-
-### Modify Character
-
-1. Open `packages/core/src/defaultCharacter.ts` to modify the default character. Uncomment and edit.
-
-2. To load custom characters:
-    - Use `pnpm start --characters="path/to/your/character.json"`
-    - Multiple character files can be loaded simultaneously
-3. Connect with X (Twitter)
-    - change `"clients": []` to `"clients": ["twitter"]` in the character file to connect with X
-
----
-
-### Add more plugins
-
-1. run `npx elizaos plugins list` to get a list of available plugins or visit https://elizaos.github.io/registry/
-
-2. run `npx elizaos plugins add @elizaos-plugins/plugin-NAME` to install the plugin into your instance
-
-#### Additional Requirements
-
-You may need to install Sharp. If you see an error when starting up, try installing it with the following command:
-
-```
-pnpm install --include=optional sharp
-```
-
----
-
-## Using Your Custom Plugins
-Plugins that are not in the official registry for ElizaOS can be used as well. Here's how:
+- An Ethereum wallet with SwellChain access
 
 ### Installation
 
-1. Upload the custom plugin to the packages folder:
+1. Clone the Eliza repository:
+   ```bash
+   git clone https://github.com/elizaos/eliza.git
+   cd eliza
+   ```
 
-```
-packages/
-├─plugin-example/
-├── package.json
-├── tsconfig.json
-├── src/
-│   ├── index.ts        # Main plugin entry
-│   ├── actions/        # Custom actions
-│   ├── providers/      # Data providers
-│   ├── types.ts        # Type definitions
-│   └── environment.ts  # Configuration
-├── README.md
-└── LICENSE
-```
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-2. Add the custom plugin to your project's dependencies in the agent's package.json:
+3. Configure your environment:
+   ```bash
+   cp .env.example .env
+   ```
+   Edit the `.env` file to include your wallet information and API keys.
+
+4. Build the project:
+   ```bash
+   pnpm build
+   ```
+
+5. Add the SwellChain plugin:
+   ```bash
+   npx elizaos plugins add @elizaos-plugins/plugin-swell
+   ```
+
+6. Create or modify your SwellChain character file (see next section)
+
+7. Start the agent:
+   ```bash
+   pnpm start --characters="agents/swellchain.json"
+   ```
+
+8. Start the web client:
+   ```bash
+   pnpm start:client
+   ```
+
+## Character Configuration
+
+Eliza uses character files to define an agent's personality, knowledge, and capabilities. A SwellChain character file will look something like this:
 
 ```json
 {
-  "dependencies": {
-    "@elizaos/plugin-example": "workspace:*"
-  }
+  "name": "SwellGuide",
+  "description": "An expert in SwellChain operations",
+  "instructions": "You are SwellGuide, a helpful assistant for the SwellChain ecosystem. Help users with transfers, bridges, swaps, and finding earning opportunities.",
+  "plugins": ["@elizaos/plugin-swell"],
+  "model": {
+    "provider": "openai",
+    "model": "gpt-4",
+    "apiKey": "${OPENAI_API_KEY}"
+  },
+  "clients": ["web"]
 }
 ```
 
-3. Import the custom plugin to your agent's character.json
+You can customize:
+- The agent's personality and instructions
+- The underlying AI model
+- Which clients the agent will use to communicate
+
+## Adding Multiple Agents
+
+You can create and run multiple agents simultaneously with Eliza:
+
+1. Create separate character files for each agent:
+   ```
+   agents/
+   ├── swellchain-expert.json
+   ├── swellchain-trader.json
+   └── swellchain-developer.json
+   ```
+
+2. Start Eliza with multiple character files:
+   ```bash
+   pnpm start --characters="agents/swellchain-expert.json,agents/swellchain-trader.json,agents/swellchain-developer.json"
+   ```
+
+Each agent will operate independently with its own personality and specialized knowledge.
+
+## Connecting to Communication Platforms
+
+### Web Interface
+The web interface is enabled by default by including `"web"` in the `"clients"` array.
+
+### Discord
+To connect your agent to Discord:
+
+1. Add `"discord"` to the `"clients"` array in your character file:
+   ```json
+   "clients": ["web", "discord"]
+   ```
+
+2. Add your Discord bot token to your `.env` file:
+   ```
+   DISCORD_BOT_TOKEN=your_discord_bot_token
+   ```
+
+3. Invite the bot to your server with appropriate permissions
+
+### X (Twitter)
+To connect your agent to X (formerly Twitter):
+
+1. Add `"twitter"` to the `"clients"` array:
+   ```json
+   "clients": ["web", "twitter"]
+   ```
+
+2. Add your X API credentials to your `.env` file:
+   ```
+   TWITTER_APP_KEY=your_app_key
+   TWITTER_APP_SECRET=your_app_secret
+   TWITTER_ACCESS_TOKEN=your_access_token
+   TWITTER_ACCESS_SECRET=your_access_secret
+   ```
+
+### Telegram
+To connect your agent to Telegram:
+
+1. Add `"telegram"` to the `"clients"` array:
+   ```json
+   "clients": ["web", "telegram"]
+   ```
+
+2. Add your Telegram bot token to your `.env` file:
+   ```
+   TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+   ```
+
+## SwellChain Plugin Capabilities
+
+The SwellChain plugin provides the following actions:
+
+### Token Transfers
+Transfer tokens between addresses on SwellChain:
+```
+Send 0.1 ETH to 0x1234...5678
+```
+
+### Bridging Assets
+Bridge tokens between Ethereum and SwellChain:
+```
+Bridge 5 ETH from Ethereum to SwellChain
+```
+```
+Send 10 USDT from SwellChain back to Ethereum
+```
+
+### Price Oracle Queries
+Get current and historical token prices:
+```
+What's the current price of ETH/USDC?
+```
+```
+Show me the historical price data for SWELL/ETH over the past week
+```
+
+### Earning Opportunities
+Discover yield-generating options:
+```
+Show me all lending opportunities with APR above 5%
+```
+```
+What are the best pools for earning yield with ETH?
+```
+
+### Token Swaps
+Execute token exchanges on SwellChain:
+```
+Swap 0.5 ETH for SWELL with 0.5% slippage
+```
+```
+Exchange 100 USDe for swETH
+```
+
+## Customizing Your Agent
+
+### Personality and Knowledge
+Modify the `instructions` field in your character file to specialize your agent. For example:
 
 ```json
-  "plugins": [
-    "@elizaos/plugin-example",
-  ],
+"instructions": "You are SwellTrader, an expert in finding the best SwellChain trading opportunities. Focus on helping users optimize their token swaps, find the best prices, and identify high-yield earning opportunities. Use technical analysis and market knowledge to provide trading insights."
 ```
 
----
+### Supported Tokens
+The plugin supports all major tokens on SwellChain, including:
+- ETH (native token)
+- WETH
+- SWELL
+- USDe
+- swETH
+- rswETH
+- weETH
+- and many more
 
-### Start Eliza with Gitpod
+You can check the full list in the plugin's swap template.
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/elizaos/eliza/tree/main)
+## Advanced Configuration
 
----
+### Multi-Agent Interactions
+Create specialized agents that work together:
 
-### Deploy Eliza in one click
+1. **SwellAdvisor**: Helps users understand SwellChain concepts
+2. **SwellTrader**: Specializes in optimizing swaps and finding good prices
+3. **SwellYield**: Focuses on finding the best earning opportunities
 
-Use [Fleek](https://fleek.xyz/eliza/) to deploy Eliza in one click. This opens Eliza to non-developers and provides the following options to build your agent:
-1. Start with a template
-2. Build characterfile from scratch
-3. Upload pre-made characterfile
+Users can interact with the agent that best suits their current needs.
 
-Click [here](https://fleek.xyz/eliza/) to get started!
+### Integration with External Data
+The SwellChain plugin can be extended to incorporate:
+- Market data from external sources
+- Gas price optimizers
+- Trading strategy recommendations
 
----
+## Troubleshooting
 
-### Community & contact
+### Common Issues
 
-- [GitHub Issues](https://github.com/elizaos/eliza/issues). Best for: bugs you encounter using Eliza, and feature proposals.
-- [elizaOS Discord](https://discord.gg/elizaos). Best for: hanging out with the elizaOS technical community
-- [DAO Discord](https://discord.gg/ai16z). Best for: hanging out with the larger non-technical community
-
-## Citation
-
-We now have a [paper](https://arxiv.org/pdf/2501.06781) you can cite for the Eliza OS:
-```bibtex
-@article{walters2025eliza,
-  title={Eliza: A Web3 friendly AI Agent Operating System},
-  author={Walters, Shaw and Gao, Sam and Nerd, Shakker and Da, Feng and Williams, Warren and Meng, Ting-Chien and Han, Hunter and He, Frank and Zhang, Allen and Wu, Ming and others},
-  journal={arXiv preprint arXiv:2501.06781},
-  year={2025}
-}
+**Plugin Not Found**
 ```
-
-## Contributors
-
-<a href="https://github.com/elizaos/eliza/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elizaos/eliza" alt="Eliza project contributors" />
-</a>
-
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=elizaos/eliza&type=Date)](https://star-history.com/#elizaos/eliza&Date)
-
-## 🛠️ System Requirements
-
-### Minimum Requirements
-- CPU: Dual-core processor
-- RAM: 4GB
-- Storage: 1GB free space
-- Internet connection: Broadband (1 Mbps+)
-
-### Software Requirements
-- Python 2.7+ (3.8+ recommended)
-- Node.js 23+
-- pnpm
-- Git
-
-### Optional Requirements
-- GPU: For running local LLM models
-- Additional storage: For document storage and memory
-- Higher RAM: For running multiple agents
-
-## 📁 Project Structure
+Error: Plugin '@elizaos/plugin-swell' not found
 ```
-eliza/
-├── packages/
-│   ├── core/           # Core Eliza functionality
-│   ├── clients/        # Client implementations
-│   └── actions/        # Custom actions
-├── docs/              # Documentation
-├── scripts/           # Utility scripts
-└── examples/          # Example implementations
+Solution: Make sure you've added the plugin with `npx elizaos plugins add @elizaos-plugins/plugin-swell`
+
+**API Connection Issues**
 ```
+Error connecting to SwellChain RPC
+```
+Solution: Check your network connection and verify RPC endpoints in the plugin configuration
 
-## 🤝 Contributing
+## Resources
 
-We welcome contributions! Here's how you can help:
+- [Eliza Documentation](https://elizaos.github.io/eliza/)
+- [SwellChain Documentation](https://build.swellnetwork.io/docs/)
+- [Eliza Discord Community](https://discord.gg/elizaos)
 
-### Getting Started
-1. Fork the repository
-2. Create a new branch: `git checkout -b feature/your-feature-name`
-3. Make your changes
-4. Run tests: `pnpm test`
-5. Submit a pull request
+## Contributing
 
-### Types of Contributions
-- 🐛 Bug fixes
-- ✨ New features
-- 📚 Documentation improvements
-- 🌍 Translations
-- 🧪 Test improvements
+Contributions to improve the SwellChain agent are welcome! You can:
 
-### Code Style
-- Follow the existing code style
-- Add comments for complex logic
-- Update documentation for changes
-- Add tests for new features
+1. Create new SwellChain-specific actions in the plugin
+2. Improve the agent's knowledge and instructions
+3. Add support for new tokens or features
+4. Share your custom character configurations
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
