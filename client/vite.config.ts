@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
                 env.SERVER_PORT || "3000"
             ),
             "import.meta.env.VITE_SERVER_URL": JSON.stringify(
-                env.SERVER_URL || "http://localhost"
+                env.SERVER_URL || "http://143.198.116.181"
             ),
             "import.meta.env.VITE_SERVER_BASE_URL": JSON.stringify(
                 env.SERVER_BASE_URL
