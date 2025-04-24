@@ -13,9 +13,10 @@ SwellChain Agent leverages Eliza's extensible agent architecture to provide a us
 
 - 🔄 **Token Transfers**: Send tokens between addresses on SwellChain
 - 🌉 **Cross-Chain Bridge**: Bridge assets between Ethereum and SwellChain
-- 💱 **Token Swaps**: Exchange tokens using SwellChain's liquidity pools
+- 💱 **Token Swaps**: Exchange tokens using SwellChain's liquidity pools - mainnet
 - 📊 **Price Oracle**: Query current and historical token prices
 - 💰 **Earning Opportunities**: Discover staking, lending, and liquidity provision options
+- earnEth  - mainet
 
 ## Getting Started
 
@@ -287,4 +288,7 @@ Solution: Check your network connection and verify RPC endpoints in the plugin c
 - [SwellChain Documentation](https://build.swellnetwork.io/docs/)
 - [Eliza Discord Community](https://discord.gg/elizaos)
 
+ - setup video tutorial
 
+
+[![Watch the video](https://res.cloudinary.com/dydj8hnhz/image/upload/v1745513114/guutivglcbdcarxslwnw.png)](https://youtu.be/FFEYxFZILEg)
