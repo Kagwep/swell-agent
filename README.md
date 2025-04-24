@@ -25,46 +25,68 @@ SwellChain Agent leverages Eliza's extensible agent architecture to provide a us
 - [pnpm](https://pnpm.io/installation)
 - An Ethereum wallet with SwellChain access
 
-### Installation
+# SwellChain Plugin for Eliza
 
+## Installation
 1. Clone the Eliza repository:
    ```bash
-   git clone https://github.com/elizaos/eliza.git
-   cd eliza
+   git clone https://github.com/Kagwep/swell-agent.git
+   cd swell-agent
    ```
-
 2. Install dependencies:
    ```bash
    pnpm install
    ```
-
 3. Configure your environment:
    ```bash
    cp .env.example .env
    ```
    Edit the `.env` file to include your wallet information and API keys.
-
 4. Build the project:
    ```bash
    pnpm build
    ```
-
 5. Add the SwellChain plugin:
    ```bash
    npx elizaos plugins add @elizaos-plugins/plugin-swell
    ```
-
 6. Create or modify your SwellChain character file (see next section)
-
 7. Start the agent:
    ```bash
    pnpm start --characters="agents/swellchain.json"
    ```
-
 8. Start the web client:
    ```bash
    pnpm start:client
    ```
+
+## SwellChain Plugin Overview
+
+The SwellChain plugin is located in the `packages/swell-plugin` directory. This plugin enables interaction with the SwellChain ecosystem through the Eliza agent framework.
+
+### Available Actions
+
+The plugin provides the following actions:
+
+1. **Bridge** - Transfer assets between Ethereum and SwellChain
+2. **Swap** - Exchange tokens on SwellChain
+3. **Deposit Assets** - Deposit assets to boringVault to earn ETH returns
+4. **Transfer Assets** - Send tokens to different addresses on SwellChain
+5. **Fetch Opportunities** - Discover investment opportunities on SwellChain
+
+### Environment Configuration
+
+The following environment variables must be configured for the plugin to function:
+
+```
+ANTHROPIC_API_KEY=     # API key for Anthropic services
+SWELL_PRIVATE_KEY=     # Private key for SwellChain transactions
+SWELL_PROVIDER_URL=    # RPC endpoint for SwellChain
+ETHEREUM_PRIVATE_KEY=  # Private key for Ethereum transactions
+ETHEREUM_PROVIDER_URL= # RPC endpoint for Ethereum
+```
+
+
 
 ## Character Configuration
 
