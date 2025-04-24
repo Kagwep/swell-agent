@@ -9,6 +9,7 @@ import {
 import { initSwellWalletProvider, type WalletProvider } from "../providers/wallet";
 import { earningOpportunitiesTemplate } from "../templates";
 import { Opportunity, RewardBreakdown } from "../types";
+import { formatOpportunitiesWithEmoji } from "../utils";
 
 
 
@@ -269,49 +270,13 @@ export const listEarningOpportunitiesAction: Action = {
                 
                 let responseTitle = `Here are the${filterOptions.filter && filterOptions.filter.toLowerCase() === 'lend' ? ' current lending' : ''} opportunities on Swellchain:`;
                 
-                // Format each opportunity in a structured way
-                const formattedOpps = opportunities.map((opp, index) => {
-                    // Create the main line with name and APR
-                    let oppText = `**${index + 1}. ${opp.name}** - ${action.formatApr(opp.apr)} APR`;
-                    
-                    // Add protocol information if available
-                    if (opp.protocol && opp.protocol.name) {
-                        oppText += ` on ${opp.protocol.name}`;
-                    }
-                    
-                    // Add TVL information
-                    oppText += `\n   TVL: ${opp.tvl.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
-                    
-                    // Add daily rewards if available
-                    if (opp.dailyRewards > 0) {
-                        oppText += ` | Daily rewards: ${opp.dailyRewards.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-                    }
-                    
-                    // Add tokens involved
-                    if (opp.tokens && opp.tokens.length > 0) {
-                        const tokensList = opp.tokens.map(token => token.symbol).join(', ');
-                        oppText += `\n   Tokens: ${tokensList}`;
-                    }
-                    
-                    // Add deposit link if available
-                    if (opp.depositUrl) {
-                        oppText += `\n   [Start earning now](${opp.depositUrl})`;
-                    }
-                    
-                    // Add tags as badges
-                    if (opp.tags && opp.tags.length > 0) {
-                        const tagsText = opp.tags.map(tag => `\`${tag}\``).join(' ');
-                        oppText += `\n   ${tagsText}`;
-                    }
-                    
-                    return oppText;
-                }).join('\n\n');
+                const formattedText = formatOpportunitiesWithEmoji(opportunities);
                 
                 // Add a footer with additional information
                 const footer = "\nThese rates adjust based on market conditions. Want me to filter for specific types of opportunities?";
                 
                 // Combine all parts into a complete formatted message
-                const responseText = `${responseTitle}\n\n${formattedOpps}\n\n${footer}`;
+                const responseText = `${responseTitle}\n\n${formattedText}\n\n${footer}`;
                 
                 callback({
                     text: responseText,

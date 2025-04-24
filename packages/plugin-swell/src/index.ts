@@ -5,6 +5,7 @@ import { bridgeAction } from "./actions/bridge";
 import { multiNetworkWalletProvider } from "./providers/multiwallet";
 import { priceAction } from "./actions/price";
 import { listEarningOpportunitiesAction } from "./actions/opportunities";
+import { nucleusEarnAction } from "./actions/earn";
 
 export const swellPlugin: Plugin = {
     name: "swell",
@@ -12,7 +13,8 @@ export const swellPlugin: Plugin = {
     providers: [multiNetworkWalletProvider],
     evaluators: [],
     services: [],
-    actions: [transferAction,bridgeAction, priceAction,listEarningOpportunitiesAction],
+    actions: [transferAction,bridgeAction, priceAction,listEarningOpportunitiesAction,nucleusEarnAction],
 };
 
 export default swellPlugin;
+ 

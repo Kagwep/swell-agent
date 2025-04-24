@@ -265,3 +265,56 @@ For a swap request of USDT to swETH:
 }
 \`\`\`
 `;
+
+export const earnETHTemplate = `Given the recent messages and wallet information below:
+{{recentMessages}}
+{{walletInfo}}
+
+Extract the following information about the requested earn eth operation:
+
+Operation type: Must be one of "deposit" or "withdraw"
+Token: Must be one of the supported assets ("ezETH", "rswETH", "swETH", "weETH", "wstETH" for deposits, or the destination asset for withdrawals)
+Amount: Must be a string representing the amount (number without token symbol, e.g., "0.1")
+Slippage tolerance: Must be a number representing percentage (default to "1.0" if not specified)
+
+Respond with a JSON markdown block containing only the extracted values:
+\`\`\`json
+{
+  "operation": string,
+  "token": string,
+  "amount": string,
+  "slippage": string
+}
+\`\`\`
+
+If the user didn't specify an amount, set amount to null to prompt for clarification.
+If the user didn't specify a token for deposit, default to "ezETH".
+If the user didn't specify a token for withdrawal, default to "ezETH".
+
+Example responses:
+For a deposit request:
+\`\`\`json
+{
+  "operation": "deposit",
+  "token": "ezETH",
+  "amount": "0.5",
+  "slippage": "1.0"
+}
+\`\`\`
+
+For a withdrawal request:
+\`\`\`json
+{
+  "operation": "withdraw",
+  "token": "wstETH",
+  "amount": "0.1",
+  "slippage": "0.5"
+}
+\`\`\`
+
+If any required field cannot be determined, use the following defaults:
+Operation: null (requires user clarification)
+Token: "ezETH"
+Amount: null (requires user clarification)
+Slippage: "1.0"
+`;

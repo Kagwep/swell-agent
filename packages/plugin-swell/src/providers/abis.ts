@@ -18,6 +18,15 @@ export const ERC20ABI = [
     "function approve(address spender, uint256 amount) returns (bool)"
   ];
 
+  export const ERC20ABI_E = [
+    "function name() view returns (string)",
+    "function symbol() view returns (string)",
+    "function decimals() view returns (uint8)",
+    "function balanceOf(address) view returns (uint256)",
+    "function approve(address, uint256) returns (bool)",
+    "function allowance(address, address) view returns (uint256)"
+  ];
+
 
   export const PriceOracleABI = [
     // Get the latest price
@@ -72,3 +81,17 @@ export const ERC20ABI = [
       "type": "function"
     }
   ]
+
+
+  
+ export const TellerABI = [
+    "function deposit(address depositAsset, uint256 depositAmount, uint256 minimumMint) returns (uint256)",
+    "function bulkWithdraw(address withdrawAsset, uint256 shareAmount, uint256 minimumAssets, address to) returns (uint256)",
+    "function isSupported(address) view returns (bool)"
+  ];
+  
+  export const VaultABI = [
+    "function balanceOf(address) view returns (uint256)",
+    "function totalSupply() view returns (uint256)"
+  ];
+  

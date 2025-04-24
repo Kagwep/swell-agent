@@ -50,3 +50,49 @@ export const supportedTokens: SupportedTokens = {
       swBTC: 8,
       default: 18
   };
+
+
+  // earnETH tokens information
+export const earnETHTokens = {
+  // Contract addresses
+  addresses: {
+    TELLER: "0x6D207874DDc8B1C3954a0BB2b21c6Fce2Aa18Dba",
+    VAULT: "0x9Ed15383940CC380fAEF0a75edacE507cC775f22"
+  },
+  // Supported deposit tokens
+  supportedTokens: {
+    ezETH: {
+      name: "Renzo Restaked ETH",
+      symbol: "ezETH",
+      address: "0x2416092f143378750bb29b79eD961ab195CcEea5",
+      decimals: 18
+    },
+    rswETH: {
+      name: "Restaked Swell ETH",
+      symbol: "rswETH",
+      address: "0x18d33689AE5d02649a859A1CF16c9f0563975258",
+      decimals: 18
+    },
+    swETH: {
+      name: "Swell ETH",
+      symbol: "swETH",
+      address: "0x09341022ea237a4DB1644DE7CCf8FA0e489D85B7",
+      decimals: 18
+    },
+    weETH: {
+      name: "Wrapped eETH",
+      symbol: "weETH",
+      address: "0xA6cB988942610f6731e664379D15fFcfBf282b44",
+      decimals: 18
+    },
+    wstETH: {
+      name: "Wrapped liquid staked Ether 2.0",
+      symbol: "wstETH",
+      address: "0x7c98E0779EB5924b3ba8cE3B17648539ed5b0Ecc",
+      decimals: 18
+    }
+  }
+};
+
+// Convert the supportedTokens object to an array for the UI
+export const ASSETS = Object.values(earnETHTokens.supportedTokens);
