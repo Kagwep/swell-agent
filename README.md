@@ -287,15 +287,4 @@ Solution: Check your network connection and verify RPC endpoints in the plugin c
 - [SwellChain Documentation](https://build.swellnetwork.io/docs/)
 - [Eliza Discord Community](https://discord.gg/elizaos)
 
-## Contributing
 
-Contributions to improve the SwellChain agent are welcome! You can:
-
-1. Create new SwellChain-specific actions in the plugin
-2. Improve the agent's knowledge and instructions
-3. Add support for new tokens or features
-4. Share your custom character configurations
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
