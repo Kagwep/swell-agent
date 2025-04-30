@@ -232,7 +232,7 @@ const buildOperationDetails = async (state: State, runtime: IAgentRuntime) => {
 };
 
 // Nucleus Earn Action definition
-export const nucleusEarnAction: Action = {
+export const earnETHAction: Action = {
     name: "nucleus_earn",
     description: "Deposit to or withdraw from Nucleus/earnETH vault to earn yield on ETH LSDs",
     handler: async (runtime, _message, state, _options, callback) => {

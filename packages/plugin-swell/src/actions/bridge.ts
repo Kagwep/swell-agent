@@ -9,9 +9,9 @@ import {
 import { initSwellWalletProvider, type WalletProvider } from "../providers/wallet";
 import { ethers } from "ethers";
 import { bridgeTemplate } from "../templates";
-import { networks } from "../providers/network";
+import { testnetNetworks,mainnetNetworks } from "../providers/network";
 import { ERC20ABI, StandardBridgeABI } from "../providers/abis";
-import { supportedTokens } from "../providers/tokens";
+import { supportedMainnetTokens, supportedTestnetTokens } from "../providers/tokens";
 import { initEthereumWalletProvider, type EthereumWalletProvider } from "../providers/ethWallet";
 
 type BridgeParams = {
@@ -26,7 +26,7 @@ export class BridgeAction {
 
     async bridge(params: BridgeParams) {
 
-        const bridgeAddress = networks[params.sourceNetwork].bridgeAddress;
+        const bridgeAddress = mainnetNetworks[params.sourceNetwork].bridgeAddress;
     
         
         try {
@@ -63,7 +63,7 @@ export class BridgeAction {
             }else {
 
                 // Get token information
-                const tokenObj = supportedTokens[token];
+                const tokenObj = supportedMainnetTokens[token];
                 const tokenAddress = sourceNetwork === 'ethereum' ? tokenObj.l1Address : tokenObj.l2Address;
                 const remoteTokenAddress = sourceNetwork === 'ethereum' ? tokenObj.l2Address : tokenObj.l1Address;
                 

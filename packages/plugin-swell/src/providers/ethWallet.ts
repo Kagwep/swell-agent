@@ -1,6 +1,6 @@
 import type { IAgentRuntime, Provider, Memory, State } from "@elizaos/core";
 import { ethers } from "ethers";
-import { networks } from "./network";
+import { testnetNetworks,mainnetNetworks } from "./network";
 
 export class EthereumWalletProvider {
     wallet: ethers.Wallet;
@@ -27,7 +27,7 @@ export const initEthereumWalletProvider = async (runtime: IAgentRuntime) => {
     
     const ethProviderUrl =
         runtime.getSetting("ETHEREUM_PROVIDER_URL") ||
-        networks['ethereum'].rpcUrl;
+        mainnetNetworks['ethereum'].rpcUrl;
     
     const provider = new ethers.JsonRpcProvider(ethProviderUrl);
     return new EthereumWalletProvider(privateKey, provider);

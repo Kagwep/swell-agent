@@ -1,6 +1,6 @@
 import type { IAgentRuntime, Provider, Memory, State } from "@elizaos/core";
 import { ethers } from "ethers";
-import { networks } from "./network";
+import { testnetNetworks,mainnetNetworks } from "./network";
 
 export class WalletProvider {
     wallet: ethers.Wallet;
@@ -27,7 +27,7 @@ export const initSwellWalletProvider = async (runtime: IAgentRuntime) => {
     
     const ethProviderUrl =
         runtime.getSetting("SWELL_PROVIDER_URL") ||
-        networks['swellchain'].rpcUrl;
+        mainnetNetworks['swellchain'].rpcUrl;
     
     const provider = new ethers.JsonRpcProvider(ethProviderUrl);
     return new WalletProvider(privateKey, provider);

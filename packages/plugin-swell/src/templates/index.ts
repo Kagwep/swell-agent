@@ -23,12 +23,10 @@ export const bridgeTemplate = `Given the recent messages and wallet information 
 {{recentMessages}}
 {{walletInfo}}
 Extract the following information about the requested bridge operation:
-
-Token to bridge: Must be one of "ETH", "WETH", or "USDT" (default to "ETH" if not specified)
+Token to bridge: Must be one of the supported tokens: "ETH", "WETH", "wstETH", "stBTC", "SWELL", "rSWELL", "swBTC", "weETH", "rswETH", "swETH", "ezETH", "pzETH", "rsETH", "USDe", "sUSDe", "ENA", "EUL", "KING", "rUSDC" (default to "ETH" if not specified)
 Amount to bridge: Must be a string representing the amount (number without coin symbol, e.g., "0.1")
 Source network: Must be one of "ethereum" or "swellchain"
 Destination network: Must be one of "ethereum" or "swellchain" (opposite of source)
-
 Respond with a JSON markdown block containing only the extracted values:
 \`\`\`json
 {
@@ -40,7 +38,6 @@ Respond with a JSON markdown block containing only the extracted values:
 \`\`\`
 If the user didn't specify a direction for the bridge (source/destination), use their current connected network as the source and the opposite as destination.
 Example responses:
-
 For a user on Ethereum bridge request:
 \`\`\`json
 {
@@ -53,15 +50,13 @@ For a user on Ethereum bridge request:
 For a user on Swellchain bridge request:
 \`\`\`json
 {
-"token": "USDT",
-"amount": "10",
+"token": "wstETH",
+"amount": "0.5",
 "sourceNetwork": "swellchain",
 "destinationNetwork": "ethereum"
 }
 \`\`\`
-
 If any required field cannot be determined, use the following defaults:
-
 Token: "ETH"
 Amount: null (requires user clarification)
 Source: Current connected network

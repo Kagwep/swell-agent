@@ -53,3 +53,6 @@ export function formatOpportunitiesWithEmoji(opportunities, filterOptions = {}) 
     return `${apr.toFixed(1)}%`;
   }
   
+
+
+  
